@@ -1,4 +1,5 @@
 ﻿using CachePlayground.Infrastructure;
+using DotNet.Testcontainers.Configurations;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,9 @@ public class DbFixture : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
+        //Otherwise, you can't run it on BitBucket threads. ResourseReaper will not be assembled there.
+        TestcontainersSettings.ResourceReaperEnabled = false;
+
         const string user = "admin";
         const string password = "12345678";
         const string database = "tcDb";
