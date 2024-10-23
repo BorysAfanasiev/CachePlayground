@@ -23,9 +23,9 @@ public class LolTests : IClassFixture<DbFixture>
         const string name = "jack";
         const int age = 11;
         var query = BuildQuery(route,
-            [
-                new(nameof(Person.Name), name),
-                new(nameof(Person.Age), age.ToString()),
+        [
+            new(nameof(Person.Name), name),
+            new(nameof(Person.Age), age.ToString()),
         ]);
 
         await this.fixture.Client.PutAsJsonAsync(route, new PersonRequestDto { Name = name, Age = age });
